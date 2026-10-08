@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+secrets/
+
+# Database (regenerate with `tina4 migrate`)
+*.db
+*.db-shm
+*.db-wal
+data/
+
+# Logs & caches
+logs/
+.pytest_cache/
+.tina4/
+
+# User uploads (runtime data)
+src/public/uploads/*
+!src/public/uploads/.gitkeep
+
+# Compiled CSS from SCSS (regenerated on run) — keep source SCSS tracked
+# (leave compiled css tracked if you prefer; remove the next line to track it)
+
+# OS
+.DS_Store
+Thumbs.db

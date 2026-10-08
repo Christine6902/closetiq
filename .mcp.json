@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tina4example": {
+      "type": "sse",
+      "url": "http://localhost:7146/__dev/mcp/sse"
+    }
+  }
+}

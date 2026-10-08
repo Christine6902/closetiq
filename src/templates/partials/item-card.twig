@@ -1,0 +1,26 @@
+<article class="ciq-item-card">
+    <div class="ciq-item-thumb" data-swatch="{{ item.color|default('#94a3b8') }}">
+        {% if item.image_url %}
+            <img src="{{ item.image_url }}" alt="{{ item.name }}">
+        {% else %}
+            <span class="ciq-item-icon">{{ category_icon(item.category) }}</span>
+        {% endif %}
+        <span class="ciq-item-badge">{{ item.category|capitalize }}</span>
+    </div>
+    <div class="ciq-item-body">
+        <h3 class="ciq-item-name">{{ item.name }}</h3>
+        <div class="ciq-item-tags">
+            <span class="ciq-chip ciq-chip-season">{{ item.season|default('all')|capitalize }}</span>
+            {% for tag in item.style_tags %}
+                <span class="ciq-chip">{{ tag }}</span>
+            {% endfor %}
+        </div>
+        <p class="ciq-item-meta">Worn {{ item.times_worn|default(0) }} time{{ 's' if item.times_worn != 1 else '' }}</p>
+    </div>
+    {% if show_delete %}
+    <form class="ciq-item-actions" data-delete-id="{{ item.id }}">
+        {{ form_token() }}
+        <button type="submit" class="ciq-btn ciq-btn-ghost ciq-btn-sm">Remove</button>
+    </form>
+    {% endif %}
+</article>

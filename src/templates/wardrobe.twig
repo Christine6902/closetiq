@@ -1,0 +1,77 @@
+{% extends "base.twig" %}
+{% block title %}My Wardrobe{% endblock %}
+{% block content %}
+<section class="ciq-page-head">
+    <div>
+        <h1 class="ciq-page-title">My Wardrobe</h1>
+        <p class="ciq-page-sub">Upload and organise every piece you own.</p>
+    </div>
+    <button type="button" class="ciq-btn ciq-btn-primary" data-action="toggle-add">+ Add item</button>
+</section>
+
+<section class="ciq-add-panel" id="addPanel" hidden>
+    <h2 class="ciq-section-title">Add a wardrobe item</h2>
+    <form id="itemForm" class="ciq-form">
+        {{ form_token() }}
+        <div class="ciq-form-grid">
+            <div class="ciq-field">
+                <label for="name">Item name</label>
+                <input type="text" id="name" name="name" required placeholder="e.g. Navy Linen Blazer">
+            </div>
+            <div class="ciq-field">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    {% for c in categories %}
+                    <option value="{{ c }}">{{ c|capitalize }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="ciq-field">
+                <label for="season">Season</label>
+                <select id="season" name="season">
+                    <option value="all">All seasons</option>
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                </select>
+            </div>
+            <div class="ciq-field">
+                <label for="color">Colour</label>
+                <input type="color" id="color" name="color" value="#94a3b8">
+            </div>
+            <div class="ciq-field ciq-field-wide">
+                <label for="style_tags">Style tags</label>
+                <input type="text" id="style_tags" name="style_tags" placeholder="casual, smart-casual, date (comma separated)">
+            </div>
+            <div class="ciq-field ciq-field-wide">
+                <label for="image">Photo (optional)</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+        </div>
+        <div class="ciq-form-actions">
+            <button type="button" class="ciq-btn ciq-btn-primary" data-action="save-item">Save item</button>
+            <button type="button" class="ciq-btn ciq-btn-ghost" data-action="toggle-add">Cancel</button>
+            <span id="formMessage" class="ciq-form-msg"></span>
+        </div>
+    </form>
+</section>
+
+<div class="ciq-filter-bar">
+    <a href="/wardrobe" class="ciq-filter{{ ' is-active' if active_category == '' else '' }}">All</a>
+    {% for c in categories %}
+    <a href="/wardrobe?category={{ c }}" class="ciq-filter{{ ' is-active' if active_category == c else '' }}">{{ c|capitalize }}</a>
+    {% endfor %}
+</div>
+
+{% if items %}
+<div class="ciq-item-grid">
+    {% for item in items %}
+        {% include "partials/item-card.twig" with {"item": item, "show_delete": true} %}
+    {% endfor %}
+</div>
+{% else %}
+<div class="ciq-empty">
+    <p>No items{{ ' in this category' if active_category else '' }} yet.</p>
+    <button type="button" class="ciq-btn ciq-btn-primary" onclick="toggleAddForm()">Add an item</button>
+</div>
+{% endif %}
+{% endblock %}

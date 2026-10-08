@@ -1,0 +1,67 @@
+{% extends "base.twig" %}
+{% block title %}Today's Look{% endblock %}
+{% block content %}
+<section class="ciq-page-head">
+    <div>
+        <h1 class="ciq-page-title">Today's Look</h1>
+        <p class="ciq-page-sub">A complete outfit, styled from what you already own.</p>
+    </div>
+</section>
+
+<div id="ciqWeatherBanner" class="ciq-weather-banner" hidden></div>
+
+<form class="ciq-outfit-controls" method="get" action="/outfit" data-outfit-form data-active-weather="{{ active_weather }}">
+    <div class="ciq-control">
+        <label for="occasion">Occasion</label>
+        <select id="occasion" name="occasion" data-autosubmit>
+            <option value="">Any occasion</option>
+            {% for o in occasions %}
+            <option value="{{ o }}"{{ ' selected' if active_occasion == o else '' }}>{{ o|replace('-', ' ')|capitalize }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="ciq-control">
+        <div class="ciq-control-head">
+            <label>Weather</label>
+            <button type="button" class="ciq-detect" data-action="detect-weather">Use my location</button>
+        </div>
+        <div class="ciq-weather-toggle">
+            {% for w in weather_options %}
+            <label class="ciq-weather-opt{{ ' is-active' if active_weather == w.key else '' }}">
+                <input type="radio" name="weather" value="{{ w.key }}"{{ ' checked' if active_weather == w.key else '' }} data-autosubmit>
+                <span>{{ w.icon }} {{ w.label }}</span>
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+    <button type="submit" class="ciq-btn ciq-btn-primary ciq-regen">Regenerate</button>
+</form>
+
+{% if wardrobe_empty %}
+<div class="ciq-empty">
+    <p>Your wardrobe is empty, so there's nothing to style yet.</p>
+    <a href="/wardrobe" class="ciq-btn ciq-btn-primary">Add some items</a>
+</div>
+{% elif empty %}
+<div class="ciq-empty">
+    <p>No complete outfit matches that combination. Try a different occasion or weather — or add more pieces.</p>
+    <a href="/wardrobe" class="ciq-btn ciq-btn-outline">Go to wardrobe</a>
+</div>
+{% else %}
+<div class="ciq-outfit-grid">
+    {% for piece in pieces %}
+    <article class="ciq-piece">
+        <span class="ciq-piece-slot">{{ piece.slot|capitalize }}</span>
+        <div class="ciq-piece-thumb" data-swatch="{{ piece.color|default('#94a3b8') }}">
+            {% if piece.image_url %}
+                <img src="{{ piece.image_url }}" alt="{{ piece.name }}">
+            {% else %}
+                <span class="ciq-item-icon">{{ category_icon(piece.category) }}</span>
+            {% endif %}
+        </div>
+        <h3 class="ciq-piece-name">{{ piece.name }}</h3>
+    </article>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

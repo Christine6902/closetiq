@@ -1,0 +1,11 @@
+<nav class="ciq-nav">
+    <a class="ciq-brand" href="/">
+        <span class="ciq-brand-mark">C</span>
+        <span class="ciq-brand-name">{{ APP_NAME }}</span>
+    </a>
+    <div class="ciq-nav-links">
+        <a href="/" class="ciq-nav-link{{ ' is-active' if nav_active == 'home' else '' }}">Dashboard</a>
+        <a href="/wardrobe" class="ciq-nav-link{{ ' is-active' if nav_active == 'wardrobe' else '' }}">Wardrobe</a>
+        <a href="/outfit" class="ciq-nav-link{{ ' is-active' if nav_active == 'outfit' else '' }}">Today's Look</a>
+    </div>
+</nav>

@@ -1,0 +1,137 @@
+// Calculator page styling.
+// All colours/spacing live here as SCSS variables — never hardcoded in the template.
+
+$calc-bg:            #0f172a;   // page background
+$calc-panel:         #1e293b;   // calculator body
+$calc-display-bg:    #0b1120;   // display well
+$calc-text:          #f8fafc;   // primary text
+$calc-muted:         #94a3b8;   // secondary text
+
+$key-bg:             #334155;   // number keys
+$key-bg-hover:       #475569;
+$key-fn-bg:          #475569;   // AC / ± / %
+$key-fn-hover:       #64748b;
+$key-op-bg:          #f59e0b;   // operators
+$key-op-hover:       #fbbf24;
+$key-equals-bg:      #22c55e;   // equals
+$key-equals-hover:   #4ade80;
+
+$radius:             16px;
+$key-radius:         12px;
+$gap:                12px;
+
+.calc-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 24px;
+    background: radial-gradient(circle at 30% 20%, lighten($calc-bg, 6%), $calc-bg 70%);
+}
+
+.calc {
+    width: 100%;
+    max-width: 360px;
+    background: $calc-panel;
+    border: none;
+    border-radius: $radius;
+
+    .card-body {
+        padding: 20px;
+    }
+}
+
+.calc-display {
+    background: $calc-display-bg;
+    border-radius: $key-radius;
+    padding: 20px 18px;
+    margin-bottom: 18px;
+    text-align: right;
+    overflow: hidden;
+}
+
+.calc-expression {
+    color: $calc-muted;
+    font-size: 0.95rem;
+    min-height: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
+}
+
+.calc-result {
+    color: $calc-text;
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
+}
+
+.calc-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $gap;
+}
+
+.calc-key {
+    appearance: none;
+    border: none;
+    border-radius: $key-radius;
+    padding: 0;
+    height: 64px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $calc-text;
+    background: $key-bg;
+    cursor: pointer;
+    transition: background 0.12s ease, transform 0.05s ease;
+    user-select: none;
+
+    &:hover   { background: $key-bg-hover; }
+    &:active  { transform: scale(0.96); }
+    &:focus-visible {
+        outline: 3px solid rgba($key-op-bg, 0.7);
+        outline-offset: 2px;
+    }
+
+    &--fn {
+        background: $key-fn-bg;
+        &:hover { background: $key-fn-hover; }
+    }
+
+    &--op {
+        background: $key-op-bg;
+        color: #1f2937;
+        &:hover { background: $key-op-hover; }
+        &.is-active {
+            background: $calc-text;
+            color: $key-op-bg;
+        }
+    }
+
+    &--equals {
+        background: $key-equals-bg;
+        color: #052e16;
+        &:hover { background: $key-equals-hover; }
+    }
+
+    &--wide {
+        grid-column: span 2;
+        text-align: left;
+        padding-left: 24px;
+    }
+}
+
+.calc-footer {
+    color: $calc-muted;
+    font-size: 0.85rem;
+    margin: 0;
+
+    a { color: $key-op-bg; }
+}

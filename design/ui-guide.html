@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClosetIQ — UI Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#B49669;--accent-hover:#A2875F;--accent-active:#907854;--accent-tint:#EFE6D5;--accent-strong:#7A5E34;
+  --dark:#1E1E1D;--bg:#F7F2ED;--surface:#FDFBF8;--surface-2:#F1E9DD;
+  --border:#E6DDCF;--border-strong:#D8C7AE;
+  --text-1:#1E1E1D;--text-2:#4A453E;--text-3:#8A8177;
+  --success:#466038;--success-tint:#E7EBDF;--warning:#8C5200;--warning-tint:#F4E9D5;
+  --error:#AF3A2C;--error-tint:#F6E4DF;--info:#4A6E8A;--info-tint:#E2E9EF;
+  --focus-ring:0 0 0 3px var(--accent-tint),0 0 0 1px var(--accent-strong);
+  --disabled-opacity:.45;--hover-tint:rgba(180,150,105,.08);
+  --shadow-sm:0 1px 2px rgba(60,45,30,.08);--shadow-md:0 6px 20px rgba(60,45,30,.10);--shadow-lg:0 18px 48px rgba(60,45,30,.16);
+  --radius-sm:4px;--radius-md:8px;--radius-lg:16px;--radius-full:999px;
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--space-16:64px;
+  --icon-xs:14px;--icon-sm:16px;--icon-md:20px;--icon-lg:24px;--icon-xl:32px;
+  --duration-fast:100ms;--duration-base:200ms;--duration-slow:350ms;
+  --ease-out:cubic-bezier(.2,0,0,1);--ease-in-out:cubic-bezier(.4,0,.2,1);
+  --z-dropdown:100;--z-sticky:200;--z-topbar:300;--z-drawer:400;--z-modal-backdrop:500;--z-modal:600;--z-toast:700;--z-tooltip:800;
+  --sidebar-w:220px;
+  --text-display:clamp(2.75rem,2rem + 4vw,5rem);--text-h1:clamp(2rem,1.5rem + 2.5vw,3.5rem);--text-h2:clamp(1.5rem,1.1rem + 1.6vw,2.25rem);--text-h3:clamp(1.05rem,.9rem + .75vw,1.4rem);
+  --text-overline:clamp(.65rem,.6rem + .25vw,.75rem);--text-body-lg:clamp(1.05rem,1rem + .25vw,1.15rem);--text-body:clamp(.9rem,.85rem + .25vw,1rem);--text-caption:clamp(.72rem,.7rem + .1vw,.8rem);
+  --max-prose:65ch;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1B1A18;--surface:#252320;--surface-2:#2E2B27;--border:#3A362F;--border-strong:#4A4539;
+  --accent:#C9AC7C;--accent-strong:#D8BE91;--accent-tint:#332E25;--hover-tint:rgba(201,172,124,.1);
+  --text-1:#F4EEE4;--text-2:#C9C1B3;--text-3:#938B7E;
+  --success:#8FB07A;--success-tint:#2A3324;--warning:#D79A4A;--warning-tint:#3A2E1C;--error:#E0796B;--error-tint:#3A241F;--info:#8FB4D1;--info-tint:#22303A;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 6px 20px rgba(0,0,0,.5);--shadow-lg:0 18px 48px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --bg:#1B1A18;--surface:#252320;--surface-2:#2E2B27;--border:#3A362F;--border-strong:#4A4539;
+  --accent:#C9AC7C;--accent-strong:#D8BE91;--accent-tint:#332E25;--hover-tint:rgba(201,172,124,.1);
+  --text-1:#F4EEE4;--text-2:#C9C1B3;--text-3:#938B7E;
+  --success:#8FB07A;--success-tint:#2A3324;--warning:#D79A4A;--warning-tint:#3A2E1C;--error:#E0796B;--error-tint:#3A241F;--info:#8FB4D1;--info-tint:#22303A;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 6px 20px rgba(0,0,0,.5);--shadow-lg:0 18px 48px rgba(0,0,0,.6);
+}
+@media (prefers-reduced-motion:reduce){:root{--duration-fast:0ms;--duration-base:0ms;--duration-slow:0ms;}}
+
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text-1);font-family:'Jost','Century Gothic',sans-serif;font-size:var(--text-body);line-height:1.6;-webkit-font-smoothing:antialiased;}
+h1,h2{font-family:'Cormorant Garamond','Georgia',serif;text-wrap:balance;line-height:1.1;font-weight:600;margin:0;}
+h3,h4{font-family:'Jost',sans-serif;font-weight:600;margin:0;}
+p{margin:0 0 1em;max-width:var(--max-prose);}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.list-none{list-style:none;padding:0;margin:0;}
+.focus-ring:focus-visible{box-shadow:var(--focus-ring);outline:none;}
+
+/* Layout */
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;z-index:var(--z-topbar);display:flex;align-items:center;gap:var(--space-4);padding:0 var(--space-4);padding-top:env(safe-area-inset-top);background:var(--surface);border-bottom:1px solid var(--border);}
+.topbar img{height:22px;} .topbar .title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;}
+.topbar .spacer{margin-left:auto;}
+.iconbtn{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;background:none;border:1px solid var(--border);border-radius:var(--radius-md);cursor:pointer;color:var(--text-2);}
+.iconbtn:focus-visible{box-shadow:var(--focus-ring);outline:none;}
+.hamb{display:none;}
+.sidebar{position:fixed;top:56px;bottom:0;left:0;width:var(--sidebar-w);overflow-y:auto;background:var(--surface-2);border-right:1px solid var(--border);padding:var(--space-5) 0;z-index:var(--z-drawer);}
+.sidebar .grp{font-size:var(--text-overline);text-transform:uppercase;letter-spacing:.12em;color:var(--text-3);padding:var(--space-4) var(--space-5) var(--space-2);}
+.sidebar a{display:block;padding:var(--space-2) var(--space-5);color:var(--text-2);text-decoration:none;font-size:var(--text-caption);border-left:2px solid transparent;}
+.sidebar a:hover{background:var(--hover-tint);color:var(--text-1);}
+.sidebar a.active{color:var(--accent-strong);border-left-color:var(--accent);background:var(--hover-tint);font-weight:500;}
+.backdrop{display:none;position:fixed;inset:56px 0 0 0;background:rgba(0,0,0,.4);z-index:calc(var(--z-drawer) - 1);}
+.main{margin-left:var(--sidebar-w);padding:calc(56px + var(--space-8)) var(--space-8) var(--space-16);}
+.sec{margin-bottom:var(--space-16);scroll-margin-top:72px;}
+.sec>.eyebrow{font-size:var(--text-overline);text-transform:uppercase;letter-spacing:.16em;font-weight:600;color:var(--accent-strong);}
+.sec>h2{font-size:var(--text-h2);margin:var(--space-1) 0 var(--space-2);}
+.sec>.desc{color:var(--text-2);margin-bottom:var(--space-5);}
+.demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-6);overflow-x:auto;margin-bottom:var(--space-5);}
+.demo + .demo{margin-top:0;}
+.demo-lab{font-size:var(--text-overline);text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin-bottom:var(--space-3);display:block;}
+.row{display:flex;gap:var(--space-4);flex-wrap:wrap;align-items:center;}
+.stack{display:flex;flex-direction:column;gap:var(--space-4);}
+code{font-family:ui-monospace,monospace;font-size:.85em;background:var(--surface-2);padding:2px 6px;border-radius:var(--radius-sm);color:var(--accent-strong);}
+.codeblock{font-family:ui-monospace,monospace;font-size:var(--text-caption);background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);white-space:pre;overflow-x:auto;color:var(--text-2);margin-top:var(--space-3);}
+table{width:100%;border-collapse:collapse;font-size:var(--text-caption);}
+th,td{text-align:left;padding:var(--space-2) var(--space-3);border-bottom:1px solid var(--border);}
+th{color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;font-size:var(--text-overline);}
+.tnum{font-variant-numeric:tabular-nums;text-align:right;}
+
+/* Buttons */
+.btn{min-height:40px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:0 var(--space-5);border-radius:var(--radius-md);border:1px solid transparent;font-family:inherit;font-size:var(--text-body);font-weight:500;cursor:pointer;transition:background var(--duration-fast) var(--ease-out),box-shadow var(--duration-base) var(--ease-out),border-color var(--duration-base);text-decoration:none;}
+.btn:focus-visible{box-shadow:var(--focus-ring);outline:none;}
+.btn-primary{background:var(--accent);color:var(--dark);}
+.btn-primary:hover{background:var(--accent-hover);} .btn-primary:active{background:var(--accent-active);}
+.btn-secondary{background:var(--surface);color:var(--text-1);border-color:var(--border-strong);}
+.btn-secondary:hover{border-color:var(--accent-strong);color:var(--accent-strong);}
+.btn-ghost{background:transparent;color:var(--text-2);}
+.btn-ghost:hover{background:var(--hover-tint);color:var(--text-1);}
+.btn-destructive{background:var(--error);color:#fff;}
+.btn-destructive:hover{filter:brightness(.92);}
+.btn-dark{background:var(--dark);color:#F4EEE4;}
+.btn-dark:hover{filter:brightness(1.3);}
+.btn-sm{min-height:44px;padding:0 var(--space-4);font-size:var(--text-caption);} /* 44 touch via padding; visual 32 */
+.btn-sm.v{min-height:32px;}
+.btn-lg{min-height:48px;padding:0 var(--space-6);}
+.btn[disabled],.btn.is-disabled{opacity:var(--disabled-opacity);pointer-events:none;}
+.btn.is-focused{box-shadow:var(--focus-ring);}
+.btn .spin{width:16px;height:16px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin var(--duration-slow) linear infinite;}
+.btn.is-loading .lbl{opacity:.5;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.icon{width:var(--icon-md);height:var(--icon-md);stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+
+/* Forms */
+.field{display:flex;flex-direction:column;gap:var(--space-2);max-width:320px;}
+.field label{font-size:var(--text-caption);font-weight:500;color:var(--text-2);}
+.field.focused label{color:var(--accent-strong);}
+.field.has-error label{color:var(--error);}
+.inp{min-height:44px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:0 var(--space-3);font-family:inherit;font-size:var(--text-body);color:var(--text-1);transition:border-color var(--duration-base),box-shadow var(--duration-base);width:100%;}
+.inp::placeholder{color:var(--text-3);}
+.inp:hover{border-color:var(--border-strong);}
+.inp:focus{border-color:var(--accent-strong);box-shadow:var(--focus-ring);outline:none;}
+.field.has-error .inp{border-color:var(--error);}
+.inp[disabled]{background:var(--surface-2);opacity:var(--disabled-opacity);}
+textarea.inp{min-height:120px;padding:var(--space-3);resize:vertical;line-height:1.5;}
+select.inp{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%234A453E' stroke-width='1.5'><path d='M4 6l4 4 4-4'/></svg>");background-repeat:no-repeat;background-position:right var(--space-3) center;padding-right:var(--space-8);}
+.helper{font-size:var(--text-caption);color:var(--text-3);}
+.field.has-error .helper{color:var(--error);}
+.check{display:inline-flex;align-items:center;gap:var(--space-2);cursor:pointer;min-height:44px;}
+.check input{position:absolute;opacity:0;width:1px;height:1px;}
+.check .box{width:20px;height:20px;border:1.5px solid var(--border-strong);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;transition:all var(--duration-fast);background:var(--surface);}
+.check input:checked + .box{background:var(--accent);border-color:var(--accent);}
+.check input:checked + .box::after{content:"";width:5px;height:9px;border:solid var(--dark);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px);}
+.check input:focus-visible + .box{box-shadow:var(--focus-ring);}
+.check.radio .box{border-radius:var(--radius-full);}
+.check.radio input:checked + .box::after{content:"";width:9px;height:9px;border:none;border-radius:50%;background:var(--dark);transform:none;}
+.check input:disabled + .box{opacity:var(--disabled-opacity);}
+.toggle{display:inline-flex;align-items:center;gap:var(--space-3);cursor:pointer;min-height:44px;}
+.toggle input{position:absolute;opacity:0;}
+.toggle .track{width:44px;height:24px;border-radius:var(--radius-full);background:var(--border-strong);position:relative;transition:background var(--duration-base);}
+.toggle .track::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);transition:transform var(--duration-base) var(--ease-out);}
+.toggle input:checked + .track{background:var(--accent);}
+.toggle input:checked + .track::after{transform:translateX(20px);}
+.toggle input:focus-visible + .track{box-shadow:var(--focus-ring);}
+fieldset{border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-4);}
+legend{font-size:var(--text-caption);font-weight:600;color:var(--text-2);padding:0 var(--space-2);}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-5);min-width:0;transition:box-shadow var(--duration-base) var(--ease-in-out),transform var(--duration-base);}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.card h3{font-size:var(--text-h3);margin-bottom:var(--space-2);}
+.card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:var(--space-4);}
+.statcard .num{font-family:'Cormorant Garamond',serif;font-size:var(--text-h1);font-variant-numeric:tabular-nums;color:var(--text-1);line-height:1;}
+.statcard .lab{font-size:var(--text-caption);color:var(--text-3);text-transform:uppercase;letter-spacing:.1em;}
+.card.accent{border-left:4px solid var(--accent);}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-overline);text-transform:uppercase;letter-spacing:.08em;font-weight:600;padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--text-2);}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:currentColor;}
+.badge.pill{border-radius:var(--radius-full);}
+.badge.b-success{background:var(--success-tint);color:var(--success);} .badge.b-warning{background:var(--warning-tint);color:var(--warning);}
+.badge.b-error{background:var(--error-tint);color:var(--error);} .badge.b-info{background:var(--info-tint);color:var(--info);}
+.badge.b-accent{background:var(--accent-tint);color:var(--accent-strong);}
+
+/* Alerts */
+.alert{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);border-radius:var(--radius-md);border-left:3px solid var(--text-3);background:var(--surface-2);margin-bottom:var(--space-3);}
+.alert .icon{width:20px;height:20px;flex:none;margin-top:2px;}
+.alert b{display:block;font-family:'Jost',sans-serif;}
+.alert.a-success{background:var(--success-tint);border-color:var(--success);color:var(--success);}
+.alert.a-warning{background:var(--warning-tint);border-color:var(--warning);color:var(--warning);}
+.alert.a-error{background:var(--error-tint);border-color:var(--error);color:var(--error);}
+.alert.a-info{background:var(--info-tint);border-color:var(--info);color:var(--info);}
+.alert .body{color:var(--text-1);}
+.alert .x{margin-left:auto;background:none;border:none;cursor:pointer;color:inherit;font-size:1.1rem;line-height:1;}
+
+/* Tooltip */
+[data-tip]{position:relative;}
+[data-tip]::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--dark);color:#F4EEE4;font-size:var(--text-caption);padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity var(--duration-fast) var(--ease-out);z-index:var(--z-tooltip);}
+[data-tip]:hover::after,[data-tip]:focus-within::after{opacity:1;}
+
+/* Tabs */
+.tabs{display:flex;gap:var(--space-5);border-bottom:1px solid var(--border);}
+.tab{background:none;border:none;padding:var(--space-3) 0;cursor:pointer;color:var(--text-2);font-family:inherit;font-size:var(--text-body);border-bottom:2px solid transparent;margin-bottom:-1px;transition:color var(--duration-base),border-color var(--duration-base);}
+.tab.active{color:var(--accent-strong);border-bottom-color:var(--accent);font-weight:500;}
+.tabpanel{padding-top:var(--space-4);color:var(--text-2);}
+
+/* Table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius-lg);}
+.dtable{width:100%;border-collapse:collapse;font-size:var(--text-caption);min-width:520px;}
+.dtable th{position:sticky;top:0;background:var(--surface-2);z-index:var(--z-sticky);}
+.dtable tbody tr{transition:background var(--duration-fast);}
+.dtable tbody tr:hover{background:var(--hover-tint);}
+.dtable td,.dtable th{padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--border);}
+
+/* Modal + drawer */
+.modal-backdrop{opacity:0;pointer-events:none;transition:opacity var(--duration-base) var(--ease-out);position:fixed;inset:0;background:rgba(30,20,10,.45);z-index:var(--z-modal-backdrop);}
+.modal-backdrop.open{opacity:1;pointer-events:auto;}
+dialog.modal{display:block;visibility:hidden;opacity:0;pointer-events:none;border:none;position:fixed;inset:0;margin:auto;max-width:480px;width:calc(100% - var(--space-8));max-height:90vh;overflow-y:auto;background:var(--surface);color:var(--text-1);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:var(--space-6);z-index:var(--z-modal);transition:opacity var(--duration-base) var(--ease-out),visibility 0s linear var(--duration-base);}
+dialog.modal.open{visibility:visible;opacity:1;pointer-events:auto;transition:opacity var(--duration-base) var(--ease-out),visibility 0s;}
+.modal .head{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-4);}
+.modal .foot{display:flex;gap:var(--space-3);justify-content:flex-end;margin-top:var(--space-6);}
+
+/* Empty / toast / avatar / progress / skeleton */
+.empty{text-align:center;padding:var(--space-12) var(--space-6);}
+.empty .icon{width:40px;height:40px;color:var(--text-3);margin:0 auto var(--space-3);}
+.toast{position:fixed;bottom:var(--space-6);right:var(--space-6);background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--success);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);padding:var(--space-4);z-index:var(--z-toast);min-width:260px;transform:translateY(16px);opacity:0;pointer-events:none;transition:all var(--duration-base) var(--ease-out);}
+.toast.show{transform:translateY(0);opacity:1;}
+.avatar{border-radius:50%;object-fit:cover;display:inline-flex;align-items:center;justify-content:center;font-weight:600;color:var(--dark);background:var(--accent-tint);}
+.av-sm{width:28px;height:28px;font-size:.7rem;} .av-md{width:40px;height:40px;font-size:.85rem;} .av-lg{width:56px;height:56px;font-size:1.1rem;}
+.progress{height:8px;background:var(--surface-2);border-radius:var(--radius-full);overflow:hidden;}
+.progress>span{display:block;height:100%;background:var(--accent);transition:width var(--duration-slow) var(--ease-out);}
+.skel{background:var(--surface-2);border-radius:var(--radius-sm);position:relative;overflow:hidden;}
+.skel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-100%);animation:shimmer 1.4s infinite;}
+@media (prefers-reduced-motion:reduce){.skel::after{animation:none;}}
+@keyframes shimmer{to{transform:translateX(100%);}}
+
+/* swatches/tokens */
+.swgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--space-3);}
+.swc{border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;background:var(--surface);}
+.swc .b{height:56px;} .swc .i{padding:var(--space-2) var(--space-3);}
+.swc .n{font-family:ui-monospace,monospace;font-size:var(--text-overline);} .swc .h{font-size:var(--text-overline);color:var(--text-3);}
+
+@media (max-width:768px){
+  .hamb{display:inline-flex;} .title{display:none;}
+  .sidebar{transform:translateX(-100%);transition:transform var(--duration-base) var(--ease-out);}
+  .sidebar.open{transform:translateX(0);}
+  .backdrop.open{display:block;}
+  .main{margin-left:0;}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <button class="iconbtn hamb" aria-label="Menu" onclick="document.querySelector('.sidebar').classList.toggle('open');document.querySelector('.backdrop').classList.toggle('open')">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <img src="closetiq-logo.png" alt="ClosetIQ">
+  <span class="title">UI Guide</span>
+  <button class="iconbtn spacer" aria-label="Toggle theme" onclick="document.documentElement.dataset.theme=(document.documentElement.dataset.theme==='dark'?'light':'dark')">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+  </button>
+</header>
+<div class="backdrop" onclick="document.querySelector('.sidebar').classList.remove('open');this.classList.remove('open')"></div>
+<nav class="sidebar" aria-label="Sections">
+  <div class="grp">Foundation</div>
+  <a href="#icons">Icon System</a>
+  <a href="#tokens">Design Tokens</a>
+  <a href="#type">Typography</a>
+  <a href="#spacing">Spacing &amp; Grid</a>
+  <a href="#responsive">Responsive</a>
+  <div class="grp">Components</div>
+  <a href="#buttons">Buttons</a>
+  <a href="#forms">Form Elements</a>
+  <a href="#cards">Cards</a>
+  <a href="#badges">Badges &amp; Alerts</a>
+  <a href="#nav">Navigation</a>
+  <a href="#feedback">Progress &amp; States</a>
+  <a href="#table">Data Table</a>
+  <a href="#modal">Modal &amp; Drawer</a>
+</nav>
+<main class="main">
+<section class="sec" id="icons">
+  <span class="eyebrow">Foundation</span><h2>Icon system</h2>
+  <p class="desc">Library: <strong>Lucide</strong> (lucide.dev), 1.5px stroke. In production: CDN script + <code>&lt;i data-lucide="name"&gt;</code> then <code>lucide.createIcons()</code>. Here, icons are inline <code>&lt;svg&gt;</code> using <code>currentColor</code>.</p>
+  <div class="demo">
+    <span class="demo-lab">Sizes — inherit colour via currentColor</span>
+    <div class="row" style="color:var(--text-1)">
+      <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;stroke-width:1.5;fill:none" aria-hidden="true" focusable="false"><path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:1.5;fill:none" aria-hidden="true" focusable="false"><path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>
+      <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;stroke-width:1.5;fill:none" aria-hidden="true" focusable="false"><path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>
+      <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:currentColor;stroke-width:1.5;fill:none" aria-hidden="true" focusable="false"><path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>
+      <svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:currentColor;stroke-width:1.5;fill:none" aria-hidden="true" focusable="false"><path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>
+      <span style="color:var(--text-3);font-size:var(--text-caption)">xs 14 · sm 16 · md 20 · lg 24 · xl 32</span>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Colour follows the parent — one icon, four contexts</span>
+    <div class="row">
+      <svg class="icon" style="color:var(--text-1)" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+      <svg class="icon" style="color:var(--text-3)" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+      <svg class="icon" style="color:var(--accent-strong)" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+      <svg class="icon" style="color:var(--error)" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Decorative (hidden) vs meaningful (labelled)</span>
+    <div class="row">
+      <button class="btn btn-secondary"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg><span>Add item</span></button>
+      <button class="iconbtn" aria-label="Delete item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button>
+    </div>
+    <div class="codeblock">&lt;!-- decorative: icon + text --&gt;  aria-hidden="true"
+&lt;!-- icon-only button --&gt;  aria-label="Delete item"</div>
+  </div>
+</section>
+
+<section class="sec" id="tokens">
+  <span class="eyebrow">Foundation</span><h2>Design tokens</h2>
+  <p class="desc">Every colour, shadow and radius is a CSS custom property. Brand palette, then semantics.</p>
+  <div class="demo">
+    <span class="demo-lab">Brand palette</span>
+    <div class="swgrid">
+      <div class="swc"><div class="b" style="background:#B49669"></div><div class="i"><div class="n">--accent</div><div class="h">#B49669</div></div></div>
+      <div class="swc"><div class="b" style="background:#7A5E34"></div><div class="i"><div class="n">--accent-strong</div><div class="h">#7A5E34</div></div></div>
+      <div class="swc"><div class="b" style="background:#1E1E1D"></div><div class="i"><div class="n">--dark</div><div class="h">#1E1E1D</div></div></div>
+      <div class="swc"><div class="b" style="background:#F7F2ED"></div><div class="i"><div class="n">--bg</div><div class="h">#F7F2ED</div></div></div>
+      <div class="swc"><div class="b" style="background:#FDFBF8"></div><div class="i"><div class="n">--surface</div><div class="h">#FDFBF8</div></div></div>
+      <div class="swc"><div class="b" style="background:#F1E9DD"></div><div class="i"><div class="n">--surface-2</div><div class="h">#F1E9DD</div></div></div>
+      <div class="swc"><div class="b" style="background:#E6DDCF"></div><div class="i"><div class="n">--border</div><div class="h">#E6DDCF</div></div></div>
+      <div class="swc"><div class="b" style="background:#4A453E"></div><div class="i"><div class="n">--text-2</div><div class="h">#4A453E</div></div></div>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Semantic</span>
+    <div class="swgrid">
+      <div class="swc"><div class="b" style="background:#466038"></div><div class="i"><div class="n">--success</div><div class="h">#466038</div></div></div>
+      <div class="swc"><div class="b" style="background:#8C5200"></div><div class="i"><div class="n">--warning</div><div class="h">#8C5200</div></div></div>
+      <div class="swc"><div class="b" style="background:#AF3A2C"></div><div class="i"><div class="n">--error</div><div class="h">#AF3A2C</div></div></div>
+      <div class="swc"><div class="b" style="background:#4A6E8A"></div><div class="i"><div class="n">--info</div><div class="h">#4A6E8A</div></div></div>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Contrast pairs (computed)</span>
+    <table><thead><tr><th>Pair</th><th>Ratio</th><th>AA</th></tr></thead><tbody>
+      <tr><td>--text-1 on --bg</td><td class="tnum">15.0:1</td><td>&#10003;</td></tr>
+      <tr><td>--text-2 on --bg</td><td class="tnum">8.5:1</td><td>&#10003;</td></tr>
+      <tr><td>--accent-strong on --bg</td><td class="tnum">5.4:1</td><td>&#10003;</td></tr>
+      <tr><td>charcoal on --accent (button)</td><td class="tnum">6.0:1</td><td>&#10003;</td></tr>
+      <tr><td>--accent as text on --bg</td><td class="tnum">2.5:1</td><td>&#10007; use accent-strong</td></tr>
+    </tbody></table>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Radius &amp; shadow</span>
+    <div class="row">
+      <div style="width:70px;height:48px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm)"></div>
+      <div style="width:70px;height:48px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md)"></div>
+      <div style="width:70px;height:48px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg)"></div>
+      <div style="width:90px;height:48px;background:var(--surface);border-radius:var(--radius-md);box-shadow:var(--shadow-sm)"></div>
+      <div style="width:90px;height:48px;background:var(--surface);border-radius:var(--radius-md);box-shadow:var(--shadow-md)"></div>
+      <div style="width:90px;height:48px;background:var(--surface);border-radius:var(--radius-md);box-shadow:var(--shadow-lg)"></div>
+    </div>
+  </div>
+</section>
+<section class="sec" id="type">
+  <span class="eyebrow">Foundation</span><h2>Typography</h2>
+  <p class="desc">Cormorant Garamond (display) + Jost (UI). Sizes are fluid <code>clamp()</code> tokens — resize the window to see them scale.</p>
+  <div class="demo">
+    <div class="stack">
+      <div class="row" style="justify-content:space-between"><span style="font-family:'Cormorant Garamond',serif;font-size:var(--text-display);font-weight:600;line-height:1">Capsule</span><code>--text-display</code></div>
+      <div class="row" style="justify-content:space-between"><span style="font-family:'Cormorant Garamond',serif;font-size:var(--text-h1);font-weight:600">Today's Look</span><code>--text-h1</code></div>
+      <div class="row" style="justify-content:space-between"><span style="font-family:'Cormorant Garamond',serif;font-size:var(--text-h2);font-weight:600">Travel capsule</span><code>--text-h2</code></div>
+      <div class="row" style="justify-content:space-between"><span style="font-family:'Jost',sans-serif;font-size:var(--text-h3);font-weight:600">Weather-aware picks</span><code>--text-h3 (Jost)</code></div>
+      <div class="row" style="justify-content:space-between"><span style="font-family:'Jost',sans-serif;text-transform:uppercase;letter-spacing:.18em;font-weight:600;font-size:var(--text-overline)">Smart casual</span><code>--text-overline</code></div>
+      <div class="row" style="justify-content:space-between"><span style="font-family:'Jost',sans-serif;font-size:var(--text-body)">Navy blazer, white tee and tan chinos — a reliable smart-casual pairing.</span><code>--text-body</code></div>
+      <div class="row" style="justify-content:space-between"><span style="font-family:'Jost',sans-serif;font-size:var(--text-caption);color:var(--text-3)">Worn 3 times · added Jan 2026</span><code>--text-caption</code></div>
+    </div>
+    <div class="codeblock">--text-h1: clamp(2rem, 1.5rem + 2.5vw, 3.5rem)
+             min(320px) ──────────── max(1280px)</div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Line length — 65ch keeps copy readable</span>
+    <p style="max-width:65ch">A good outfit recommendation is short and specific. ClosetIQ constrains body copy to about sixty-five characters so suggestions read like a note from a stylist, not a wall of text.</p>
+  </div>
+</section>
+
+<section class="sec" id="spacing">
+  <span class="eyebrow">Foundation</span><h2>Spacing &amp; grid</h2>
+  <p class="desc">Base-4 scale. Reference the token name, never the pixel value.</p>
+  <div class="demo">
+    <div class="stack">
+      <div class="row"><span style="width:90px;font-size:var(--text-caption);color:var(--text-3)">space-2 · 8</span><span style="height:14px;width:8px;background:var(--accent)"></span></div>
+      <div class="row"><span style="width:90px;font-size:var(--text-caption);color:var(--text-3)">space-4 · 16</span><span style="height:14px;width:16px;background:var(--accent)"></span></div>
+      <div class="row"><span style="width:90px;font-size:var(--text-caption);color:var(--text-3)">space-5 · 20</span><span style="height:14px;width:20px;background:var(--accent)"></span></div>
+      <div class="row"><span style="width:90px;font-size:var(--text-caption);color:var(--text-3)">space-6 · 24</span><span style="height:14px;width:24px;background:var(--accent)"></span></div>
+      <div class="row"><span style="width:90px;font-size:var(--text-caption);color:var(--text-3)">space-8 · 32</span><span style="height:14px;width:32px;background:var(--accent)"></span></div>
+      <div class="row"><span style="width:90px;font-size:var(--text-caption);color:var(--text-3)">space-12 · 48</span><span style="height:14px;width:48px;background:var(--accent)"></span></div>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Touch target — 44&times;44px minimum</span>
+    <div class="row">
+      <span style="width:44px;height:44px;border:1px dashed var(--accent-strong);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;color:var(--text-3);font-size:var(--text-caption)">44</span>
+      <span style="color:var(--text-2);font-size:var(--text-caption)">Every control is at least 44&times;44 on its tap axis.</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="responsive">
+  <span class="eyebrow">Foundation</span><h2>Responsive &amp; mobile</h2>
+  <p class="desc">Mobile-first. The guide's own sidebar collapses to a drawer below 768px — resize to see it.</p>
+  <div class="demo">
+    <table><thead><tr><th>Name</th><th>Breakpoint</th><th>Behaviour</th></tr></thead><tbody>
+      <tr><td>Mobile</td><td>&lt; 640px</td><td>Single column, bottom-sheet drawers, stacked nav</td></tr>
+      <tr><td>Tablet</td><td>640–767px</td><td>Two-column where useful</td></tr>
+      <tr><td>Desktop</td><td>&ge; 768px</td><td>Sidebar visible, multi-column, full patterns</td></tr>
+    </tbody></table>
+  </div>
+</section>
+<section class="sec" id="buttons">
+  <span class="eyebrow">Components</span><h2>Buttons</h2>
+  <p class="desc">Primary is gold with <strong>charcoal</strong> text (white fails contrast on gold). Hover and focus directly.</p>
+  <div class="demo">
+    <span class="demo-lab">Variants</span>
+    <div class="row">
+      <button class="btn btn-primary"><span class="lbl">Style me</span></button>
+      <button class="btn btn-secondary">Add item</button>
+      <button class="btn btn-ghost">Cancel</button>
+      <button class="btn btn-destructive">Remove</button>
+      <button class="btn btn-dark">Save look</button>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Sizes · states</span>
+    <div class="row">
+      <button class="btn btn-primary btn-sm v">Small</button>
+      <button class="btn btn-primary">Default</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+      <button class="btn btn-primary is-focused">Focused</button>
+      <button class="btn btn-primary" onclick="this.classList.add('is-loading');const l=this.querySelector('.lbl');const old=l.textContent;l.textContent='';this.insertAdjacentHTML('afterbegin','<span class=spin></span>');setTimeout(()=>{this.classList.remove('is-loading');this.querySelector('.spin').remove();l.textContent=old;},2000)"><span class="lbl">Click: loading</span></button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">With icon · icon-only</span>
+    <div class="row">
+      <button class="btn btn-secondary"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg><span>Add</span></button>
+      <button class="iconbtn" aria-label="Favourite"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0112 5a5 5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="forms">
+  <span class="eyebrow">Components</span><h2>Form elements</h2>
+  <p class="desc">Labels always present (never placeholder-only). Focus uses the gold ring.</p>
+  <div class="demo">
+    <span class="demo-lab">Text input — states</span>
+    <div class="row" style="align-items:flex-start">
+      <div class="field"><label for="f1">Item name</label><input class="inp" id="f1" placeholder="e.g. Navy linen blazer"><span class="helper">Shown on the item card.</span></div>
+      <div class="field focused"><label for="f2">Focused</label><input class="inp" id="f2" value="Wool overcoat" style="border-color:var(--accent-strong);box-shadow:var(--focus-ring)"></div>
+      <div class="field has-error"><label for="f3">Error</label><input class="inp" id="f3" value="" placeholder="Required"><span class="helper">Please enter a name.</span></div>
+      <div class="field"><label for="f4">Disabled</label><input class="inp" id="f4" value="Locked" disabled></div>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Select · textarea</span>
+    <div class="row" style="align-items:flex-start">
+      <div class="field"><label for="s1">Category</label><select class="inp" id="s1"><option>Tops</option><option>Bottoms</option><option>Dresses</option><option>Shoes</option></select></div>
+      <div class="field"><label for="t1">Notes</label><textarea class="inp" id="t1" placeholder="Styling notes…"></textarea></div>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Checkbox · radio · toggle</span>
+    <div class="row">
+      <label class="check"><input type="checkbox" checked><span class="box"></span> Smart casual</label>
+      <label class="check"><input type="checkbox"><span class="box"></span> Formal</label>
+      <label class="check radio"><input type="radio" name="w" checked><span class="box"></span> Summer</label>
+      <label class="check radio"><input type="radio" name="w"><span class="box"></span> Winter</label>
+      <label class="toggle"><input type="checkbox" checked><span class="track"></span> Weather sync</label>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Grouped with fieldset / legend</span>
+    <fieldset><legend>Occasions</legend>
+      <div class="row">
+        <label class="check"><input type="checkbox" checked><span class="box"></span> Work</label>
+        <label class="check"><input type="checkbox"><span class="box"></span> Date</label>
+        <label class="check"><input type="checkbox"><span class="box"></span> Travel</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+<section class="sec" id="cards">
+  <span class="eyebrow">Components</span><h2>Cards</h2>
+  <div class="demo">
+    <div class="row" style="align-items:stretch">
+      <div class="card" style="max-width:260px"><h3>Navy blazer</h3><p style="color:var(--text-2);margin:0">Smart-casual · all seasons · worn 3&times;</p><div class="foot"><span class="badge b-accent pill"><span class="dot"></span>Featured</span><button class="btn btn-ghost btn-sm v">View</button></div></div>
+      <div class="card statcard" style="max-width:200px"><div class="num">15</div><div class="lab">Items in wardrobe</div><div style="color:var(--success);font-size:var(--text-caption);margin-top:var(--space-2)">&uarr; 3 this week</div></div>
+      <div class="card accent" style="max-width:260px"><h3>Today's pick</h3><p style="color:var(--text-2);margin:0">Floral dress + tan sandals — styled for mild weather.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="badges">
+  <span class="eyebrow">Components</span><h2>Badges &amp; alerts</h2>
+  <div class="demo">
+    <span class="demo-lab">Status chips (colour + label, never colour alone)</span>
+    <div class="row">
+      <span class="badge b-success"><span class="dot"></span>Saved</span>
+      <span class="badge b-warning"><span class="dot"></span>Low wear</span>
+      <span class="badge b-error"><span class="dot"></span>Removed</span>
+      <span class="badge b-info"><span class="dot"></span>New</span>
+      <span class="badge b-accent pill"><span class="dot"></span>Featured</span>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Alerts</span>
+    <div class="alert a-success"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg><div class="body"><b>Outfit saved</b>Added to this week's plan.</div><button class="x" aria-label="Dismiss">&times;</button></div>
+    <div class="alert a-warning"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg><div class="body"><b>Rain expected</b>We've added a jacket to today's look.</div></div>
+    <div class="alert a-error"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 8v4M12 16h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg><div class="body"><b>Couldn't load weather</b>Pick your conditions manually.</div></div>
+    <div class="alert a-info"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 16v-4M12 8h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg><div class="body"><b>Tip</b>Add three pieces you haven't worn lately for fresh pairings.</div></div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Tooltip (CSS-only) · hover or focus</span>
+    <div class="row">
+      <button class="btn btn-secondary" data-tip="Generate a new outfit">Hover me</button>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="nav">
+  <span class="eyebrow">Components</span><h2>Navigation</h2>
+  <div class="demo">
+    <span class="demo-lab">Tabs</span>
+    <div class="tabs" id="tabs">
+      <button class="tab active" onclick="selTab(this,0)">All</button>
+      <button class="tab" onclick="selTab(this,1)">Tops</button>
+      <button class="tab" onclick="selTab(this,2)">Shoes</button>
+      <button class="tab" onclick="selTab(this,3)">Jackets</button>
+    </div>
+    <div class="tabpanel" id="tabpanel">Showing all 15 items.</div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Breadcrumb</span>
+    <nav style="font-size:var(--text-caption);color:var(--text-2)" aria-label="Breadcrumb">
+      <a href="#">Wardrobe</a> <span style="color:var(--text-3)">&rsaquo;</span> <a href="#">Jackets</a> <span style="color:var(--text-3)">&rsaquo;</span> <span aria-current="page" style="color:var(--text-1)">Wool overcoat</span>
+    </nav>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Pagination</span>
+    <div class="row">
+      <button class="btn btn-secondary btn-sm v" disabled>Prev</button>
+      <button class="btn btn-primary btn-sm v">1</button>
+      <button class="btn btn-ghost btn-sm v">2</button>
+      <button class="btn btn-ghost btn-sm v">3</button>
+      <button class="btn btn-secondary btn-sm v">Next</button>
+    </div>
+  </div>
+</section>
+<section class="sec" id="feedback">
+  <span class="eyebrow">Components</span><h2>Progress &amp; states</h2>
+  <div class="demo">
+    <span class="demo-lab">Progress · spinner · avatars</span>
+    <div class="stack" style="max-width:360px">
+      <div class="progress"><span style="width:0%"></span></div>
+      <div class="progress"><span style="width:45%"></span></div>
+      <div class="progress"><span style="width:100%"></span></div>
+    </div>
+    <div class="row" style="margin-top:var(--space-5)">
+      <span class="spin" style="display:inline-block;width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin var(--duration-slow) linear infinite"></span>
+      <span class="avatar av-sm">CH</span>
+      <span class="avatar av-md">CH</span>
+      <span class="avatar av-lg">CH</span>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Skeleton loaders</span>
+    <div class="stack" style="max-width:360px">
+      <div class="skel" style="height:14px;width:60%"></div>
+      <div class="skel" style="height:14px;width:90%"></div>
+      <div class="skel" style="height:80px;width:100%"></div>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Empty state</span>
+    <div class="empty">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7"/></svg>
+      <h3>Your wardrobe is empty</h3>
+      <p style="margin:var(--space-2) auto var(--space-4);color:var(--text-2)">Add a few pieces and ClosetIQ will start styling outfits for you.</p>
+      <button class="btn btn-primary">Add your first item</button>
+    </div>
+  </div>
+  <div class="demo">
+    <span class="demo-lab">Toast</span>
+    <button class="btn btn-secondary" onclick="const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500)">Show toast</button>
+  </div>
+</section>
+
+<section class="sec" id="table">
+  <span class="eyebrow">Components</span><h2>Data table</h2>
+  <div class="demo">
+    <div class="tbl-wrap">
+      <table class="dtable">
+        <thead><tr><th>Item</th><th>Category</th><th class="tnum">Worn</th><th style="text-align:center">Status</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Navy linen blazer</td><td>Jackets</td><td class="tnum">3</td><td style="text-align:center"><span class="badge b-info"><span class="dot"></span>New</span></td><td style="text-align:right"><button class="iconbtn" aria-label="Edit" style="min-width:32px;min-height:32px"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></button></td></tr>
+          <tr><td>White cotton tee</td><td>Tops</td><td class="tnum">12</td><td style="text-align:center"><span class="badge b-warning"><span class="dot"></span>Heavy wear</span></td><td style="text-align:right"><button class="iconbtn" aria-label="Edit" style="min-width:32px;min-height:32px"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></button></td></tr>
+          <tr><td>Tan chelsea boots</td><td>Shoes</td><td class="tnum">6</td><td style="text-align:center"><span class="badge b-success"><span class="dot"></span>Saved</span></td><td style="text-align:right"><button class="iconbtn" aria-label="Edit" style="min-width:32px;min-height:32px"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></button></td></tr>
+          <tr><td>Floral summer dress</td><td>Dresses</td><td class="tnum">1</td><td style="text-align:center"><span class="badge"><span class="dot"></span>Idle</span></td><td style="text-align:right"><button class="iconbtn" aria-label="Edit" style="min-width:32px;min-height:32px"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="modal">
+  <span class="eyebrow">Components</span><h2>Modal &amp; drawer</h2>
+  <p class="desc">Shown/hidden with a class (not <code>showModal()</code>) — backdrop and dialog gated by <code>visibility</code> + <code>pointer-events</code>, Escape and backdrop-click close.</p>
+  <div class="demo">
+    <div class="row">
+      <button class="btn btn-primary" onclick="openModal(document.getElementById('cmodal'),document.getElementById('cback'))">Open modal</button>
+    </div>
+  </div>
+</section>
+
+<div class="modal-backdrop" id="cback"></div>
+<dialog class="modal" id="cmodal" aria-labelledby="cmt">
+  <div class="head"><h3 id="cmt">Remove this item?</h3><button class="iconbtn" aria-label="Close" style="min-width:36px;min-height:36px" onclick="closeModal(document.getElementById('cmodal'),document.getElementById('cback'))">&times;</button></div>
+  <p style="color:var(--text-2)">"Navy linen blazer" will be removed from your wardrobe. This can't be undone.</p>
+  <div class="foot"><button class="btn btn-ghost" onclick="closeModal(document.getElementById('cmodal'),document.getElementById('cback'))">Cancel</button><button class="btn btn-destructive" onclick="closeModal(document.getElementById('cmodal'),document.getElementById('cback'))">Remove</button></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><b style="font-family:'Jost',sans-serif">Outfit saved</b><div style="color:var(--text-2);font-size:var(--text-caption)">Added to this week's plan.</div></div>
+
+<script>
+function selTab(btn,i){[...document.querySelectorAll('#tabs .tab')].forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById('tabpanel').textContent=['Showing all 15 items.','Showing 3 tops.','Showing 3 pairs of shoes.','Showing 2 jackets.'][i];}
+function openModal(d,b){d.classList.add('open');b.classList.add('open');document.body.style.overflow='hidden';d.querySelector('button,[href],input')?.focus();b.addEventListener('click',()=>closeModal(d,b),{once:true});}
+function closeModal(d,b){d.classList.remove('open');b.classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('dialog.modal.open').forEach(d=>closeModal(d,d.previousElementSibling));});
+</script>
+<!-- SECTIONS INSERTED HERE -->
+</main>
+
+<script>
+// Active-section highlight
+const links=[...document.querySelectorAll('.sidebar a')];
+const byId=id=>links.find(a=>a.getAttribute('href')==='#'+id);
+new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('active'));byId(e.target.id)?.classList.add('active');}});},{rootMargin:'-40% 0px -55% 0px'}).observe;
+document.querySelectorAll('.sec').forEach(s=>{new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('active'));byId(e.target.id)?.classList.add('active');}});},{rootMargin:'-40% 0px -55% 0px'}).observe(s);});
+// close drawer on nav click (mobile)
+links.forEach(a=>a.addEventListener('click',()=>{document.querySelector('.sidebar').classList.remove('open');document.querySelector('.backdrop').classList.remove('open');}));
+</script>
+</body>
+</html>

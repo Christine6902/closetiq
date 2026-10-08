@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="ciq-hero">
+  <h1 class="ciq-hero-title">{{ title }}</h1>
+  <p class="ciq-hero-sub">{{ total }} item{{ 's' if total != 1 else '' }} in your digital wardrobe.</p>
+  <div class="ciq-hero-cta">
+    <a class="ciq-btn ciq-btn-primary" href="/wardrobe">Manage wardrobe</a>
+    <a class="ciq-btn ciq-btn-ghost" href="/outfit">Today's look</a>
+  </div>
+</section>
+
+<section class="ciq-section">
+  <div class="ciq-section-head"><h2 class="ciq-section-title">By category</h2></div>
+  <div class="ciq-stat-grid">
+    {% for s in stat_cards %}
+    <a class="ciq-stat-card" href="/wardrobe?category={{ s.category }}">
+      <span class="ciq-stat-icon">{{ s.icon }}</span>
+      <span class="ciq-stat-count">{{ s.count }}</span>
+      <span class="ciq-stat-label">{{ s.label }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="ciq-section">
+  <div class="ciq-section-head"><h2 class="ciq-section-title">Recently added</h2></div>
+  {% if recent %}
+  <div class="ciq-item-grid">
+    {% for item in recent %}
+      {% include "partials/item-card.twig" with {"item": item, "show_delete": false} %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="ciq-empty">
+    <p>No items yet.</p>
+    <a class="ciq-btn ciq-btn-primary" href="/wardrobe">Add your first item</a>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

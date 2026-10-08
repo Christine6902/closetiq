@@ -1,0 +1,32 @@
+{
+  "name": "ClosetIQ — Smart Wardrobe & Outfit Planner",
+  "short_name": "ClosetIQ",
+  "description": "Digitally organise your wardrobe and get outfit recommendations based on weather, style and occasion.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf9fc",
+  "theme_color": "#7c5cff",
+  "categories": ["lifestyle", "shopping"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

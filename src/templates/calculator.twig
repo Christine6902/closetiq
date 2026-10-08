@@ -1,0 +1,48 @@
+{% extends "base.twig" %}
+{% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/calculator.css">
+{% endblock %}
+{% block content %}
+<main class="calc-page">
+    <div class="calc card shadow-lg" role="application" aria-label="Calculator">
+        <div class="card-body">
+            <div class="calc-display" aria-live="polite">
+                <div class="calc-expression" id="calc-expression" aria-hidden="true">&nbsp;</div>
+                <div class="calc-result" id="calc-result">0</div>
+            </div>
+
+            <div class="calc-keys">
+                <button type="button" class="calc-key calc-key--fn" data-action="clear">AC</button>
+                <button type="button" class="calc-key calc-key--fn" data-action="sign">&plusmn;</button>
+                <button type="button" class="calc-key calc-key--fn" data-action="percent">%</button>
+                <button type="button" class="calc-key calc-key--op" data-operator="/">&divide;</button>
+
+                <button type="button" class="calc-key" data-digit="7">7</button>
+                <button type="button" class="calc-key" data-digit="8">8</button>
+                <button type="button" class="calc-key" data-digit="9">9</button>
+                <button type="button" class="calc-key calc-key--op" data-operator="*">&times;</button>
+
+                <button type="button" class="calc-key" data-digit="4">4</button>
+                <button type="button" class="calc-key" data-digit="5">5</button>
+                <button type="button" class="calc-key" data-digit="6">6</button>
+                <button type="button" class="calc-key calc-key--op" data-operator="-">&minus;</button>
+
+                <button type="button" class="calc-key" data-digit="1">1</button>
+                <button type="button" class="calc-key" data-digit="2">2</button>
+                <button type="button" class="calc-key" data-digit="3">3</button>
+                <button type="button" class="calc-key calc-key--op" data-operator="+">+</button>
+
+                <button type="button" class="calc-key calc-key--wide" data-digit="0">0</button>
+                <button type="button" class="calc-key" data-action="decimal">.</button>
+                <button type="button" class="calc-key calc-key--equals" data-action="equals">=</button>
+            </div>
+        </div>
+    </div>
+    <p class="calc-footer text-center">Built with Tina4 &middot; <a href="https://tina4.com">tina4.com</a></p>
+</main>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="/js/calculator.js"></script>
+{% endblock %}
