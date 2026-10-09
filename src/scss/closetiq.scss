@@ -1,24 +1,51 @@
 // ClosetIQ — smart digital wardrobe styling
-$ink:        #1e1b2e;
-$muted:      #6b7280;
-$line:       #e7e5ee;
-$bg:         #faf9fc;
-$surface:    #ffffff;
-$primary:    #7c5cff;
-$primary-dk: #6a48f0;
-$accent:     #ec4899;
-$radius:     14px;
-$shadow:     0 6px 24px rgba(30, 27, 46, 0.08);
+// Brand: cream / antique gold / charcoal (from design/DESIGN.md)
+
+// ── Palette ──────────────────────────
+$ink:           #1E1E1D;   // charcoal
+$text-2:        #4A453E;   // body copy / labels
+$muted:         #8A8177;   // captions / metadata
+$line:          #E6DDCF;   // warm divider
+$line-strong:   #D8C7AE;   // focused border
+$bg:            #F7F2ED;   // warm cream
+$surface:       #FDFBF8;   // cards / panels
+$surface-2:     #F1E9DD;   // table stripes / inset
+$gold:          #B49669;   // antique gold accent
+$gold-hover:    #A2875F;   // gold −10%
+$gold-active:   #907854;   // gold −20%
+$gold-tint:     #EFE6D5;   // pale gold highlight
+$gold-strong:   #7A5E34;   // gold for text (5.4:1 on cream)
+$success:       #466038;
+$warning:       #8C5200;   // burnt umber (not gold)
+$error:         #AF3A2C;
+$info:          #4A6E8A;
+
+$radius:        14px;
+$radius-lg:     16px;
+$shadow:        0 6px 20px rgba(60, 45, 30, 0.10);
+$shadow-sm:     0 1px 2px rgba(60, 45, 30, 0.08);
+$ease:          cubic-bezier(0.4, 0, 0.2, 1);
+$dur:           200ms;
 
 * { box-sizing: border-box; }
 
 body {
     margin: 0;
-    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-family: "Jost", "Segoe UI", system-ui, -apple-system, sans-serif;
     color: $ink;
     background: $bg;
-    line-height: 1.55;
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
 }
+
+h1, h2, .ciq-hero-title, .ciq-page-title {
+    font-family: "Cormorant Garamond", "Georgia", serif;
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+h1, .ciq-hero-title { font-size: clamp(2rem, 1.5rem + 2.5vw, 3.5rem); }
+h2, .ciq-section-title { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); }
 
 .ciq-main {
     max-width: 1080px;
@@ -47,8 +74,9 @@ body {
     gap: 0.6rem;
     text-decoration: none;
     color: $ink;
-    font-weight: 700;
-    font-size: 1.2rem;
+    font-family: "Cormorant Garamond", "Georgia", serif;
+    font-weight: 600;
+    font-size: 1.3rem;
 }
 
 .ciq-brand-mark {
@@ -57,9 +85,10 @@ body {
     width: 34px;
     height: 34px;
     border-radius: 10px;
-    background: linear-gradient(135deg, $primary, $accent);
-    color: #fff;
+    background: $gold;
+    color: $ink;
     font-weight: 800;
+    font-family: "Cormorant Garamond", "Georgia", serif;
 }
 
 .ciq-nav-links { display: flex; gap: 0.4rem; flex-wrap: wrap; }
@@ -70,10 +99,10 @@ body {
     font-weight: 600;
     padding: 0.45rem 0.85rem;
     border-radius: 999px;
-    transition: all 0.15s ease;
+    transition: all $dur $ease;
 
-    &:hover { color: $ink; background: rgba(124, 92, 255, 0.08); }
-    &.is-active { color: $primary; background: rgba(124, 92, 255, 0.12); }
+    &:hover { color: $ink; background: rgba($gold, 0.08); }
+    &.is-active { color: $gold-strong; background: $gold-tint; }
 }
 
 // ── Buttons ───────────────────────────
@@ -89,34 +118,57 @@ body {
     font-size: 0.95rem;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.15s ease;
+    transition: all $dur $ease;
     background: none;
     color: $ink;
 }
 
 .ciq-btn-sm { padding: 0.35rem 0.8rem; font-size: 0.85rem; }
-.ciq-btn-primary { background: $primary; color: #fff; &:hover { background: $primary-dk; } }
-.ciq-btn-outline { border-color: $line; color: $ink; &:hover { border-color: $primary; color: $primary; } }
-.ciq-btn-ghost { color: $muted; &:hover { color: $accent; } }
+
+// Gold bg + charcoal text (white fails 2.8:1; charcoal passes 6.0:1)
+.ciq-btn-primary {
+    background: $gold;
+    color: $ink;
+    &:hover { background: $gold-hover; }
+}
+
+.ciq-btn-outline {
+    border-color: $line;
+    color: $ink;
+    &:hover { border-color: $gold; color: $gold-strong; }
+}
+
+.ciq-btn-ghost {
+    color: $muted;
+    &:hover { color: $gold-strong; }
+}
 
 // ── Hero / dashboard ──────────────────
 .ciq-hero {
-    background: linear-gradient(135deg, rgba(124, 92, 255, 0.12), rgba(236, 72, 153, 0.1));
+    background: linear-gradient(135deg, rgba($gold, 0.10), rgba($gold, 0.05));
     border: 1px solid $line;
     border-radius: 22px;
     padding: 2.5rem 2rem;
     margin-bottom: 2.5rem;
 }
 
-.ciq-eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; color: $primary; margin: 0 0 0.4rem; }
-.ciq-hero-title { font-size: 2.1rem; margin: 0 0 0.6rem; line-height: 1.15; }
-.ciq-hero-sub { color: $muted; max-width: 46ch; margin: 0 0 1.5rem; font-size: 1.05rem; }
+.ciq-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: clamp(0.65rem, 0.6rem + 0.25vw, 0.75rem);
+    font-weight: 600;
+    color: $gold-strong;
+    margin: 0 0 0.4rem;
+}
+
+.ciq-hero-title { margin: 0 0 0.6rem; }
+.ciq-hero-sub { color: $text-2; max-width: 46ch; margin: 0 0 1.5rem; font-size: 1.05rem; }
 .ciq-hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
 .ciq-section { margin-bottom: 2.75rem; }
 .ciq-section-head { display: flex; align-items: baseline; justify-content: space-between; }
-.ciq-section-title { font-size: 1.25rem; margin: 0 0 1.1rem; }
-.ciq-link { color: $primary; font-weight: 600; text-decoration: none; &:hover { text-decoration: underline; } }
+.ciq-section-title { margin: 0 0 1.1rem; }
+.ciq-link { color: $gold-strong; font-weight: 600; text-decoration: none; &:hover { text-decoration: underline; } }
 
 .ciq-stat-grid {
     display: grid;
@@ -134,9 +186,9 @@ body {
     padding: 1.1rem 1.25rem;
     text-decoration: none;
     color: $ink;
-    transition: all 0.15s ease;
+    transition: all $dur $ease;
 
-    &:hover { transform: translateY(-2px); box-shadow: $shadow; border-color: rgba(124, 92, 255, 0.4); }
+    &:hover { transform: translateY(-2px); box-shadow: $shadow; border-color: $gold; }
 }
 
 .ciq-stat-icon { font-size: 1.6rem; }
@@ -157,7 +209,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: all 0.15s ease;
+    transition: all $dur $ease;
 
     &:hover { box-shadow: $shadow; transform: translateY(-2px); }
 }
@@ -178,7 +230,7 @@ body {
     position: absolute;
     top: 0.6rem;
     left: 0.6rem;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(253, 251, 248, 0.92);
     color: $ink;
     font-size: 0.72rem;
     font-weight: 700;
@@ -193,13 +245,13 @@ body {
 .ciq-chip {
     font-size: 0.72rem;
     font-weight: 600;
-    color: $muted;
-    background: rgba(30, 27, 46, 0.05);
+    color: $text-2;
+    background: rgba(30, 30, 29, 0.05);
     padding: 0.18rem 0.55rem;
     border-radius: 999px;
 }
 
-.ciq-chip-season { background: rgba(124, 92, 255, 0.12); color: $primary; }
+.ciq-chip-season { background: $gold-tint; color: $gold-strong; }
 .ciq-item-meta { color: $muted; font-size: 0.82rem; margin: 0; }
 .ciq-item-actions { padding: 0 1rem 1rem; margin: 0; }
 
@@ -213,8 +265,12 @@ body {
     flex-wrap: wrap;
 }
 
-.ciq-page-title { font-size: 1.8rem; margin: 0 0 0.25rem; }
-.ciq-page-sub { color: $muted; margin: 0; }
+.ciq-page-title {
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+    margin: 0 0 0.25rem;
+}
+
+.ciq-page-sub { color: $text-2; margin: 0; }
 
 .ciq-add-panel {
     background: $surface;
@@ -234,7 +290,7 @@ body {
 .ciq-field { display: flex; flex-direction: column; gap: 0.35rem; }
 .ciq-field-wide { grid-column: 1 / -1; }
 
-.ciq-field label { font-weight: 600; font-size: 0.85rem; }
+.ciq-field label { font-weight: 600; font-size: 0.85rem; color: $text-2; }
 
 .ciq-field input[type="text"],
 .ciq-field select,
@@ -244,9 +300,10 @@ body {
     padding: 0.6rem 0.75rem;
     font-size: 0.95rem;
     font-family: inherit;
-    background: #fff;
+    background: $surface;
+    color: $ink;
 
-    &:focus { outline: none; border-color: $primary; box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.15); }
+    &:focus { outline: none; border-color: $gold-strong; box-shadow: 0 0 0 3px $gold-tint, 0 0 0 1px $gold-strong; }
 }
 
 .ciq-field input[type="color"] {
@@ -259,7 +316,7 @@ body {
 }
 
 .ciq-form-actions { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.4rem; flex-wrap: wrap; }
-.ciq-form-msg { color: $accent; font-size: 0.9rem; font-weight: 600; }
+.ciq-form-msg { color: $gold-strong; font-size: 0.9rem; font-weight: 600; }
 
 // ── Filter bar ────────────────────────
 .ciq-filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
@@ -273,10 +330,10 @@ body {
     border: 1px solid $line;
     border-radius: 999px;
     background: $surface;
-    transition: all 0.15s ease;
+    transition: all $dur $ease;
 
-    &:hover { color: $ink; border-color: $primary; }
-    &.is-active { background: $primary; color: #fff; border-color: $primary; }
+    &:hover { color: $ink; border-color: $gold; }
+    &.is-active { background: $gold; color: $ink; border-color: $gold; }
 }
 
 // ── Outfit generator ──────────────────
@@ -285,7 +342,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     flex-wrap: wrap;
-    background: linear-gradient(135deg, rgba(124, 92, 255, 0.1), rgba(236, 72, 153, 0.08));
+    background: linear-gradient(135deg, rgba($gold, 0.10), rgba($gold, 0.06));
     border: 1px solid $line;
     border-radius: 14px;
     padding: 0.85rem 1.1rem;
@@ -294,7 +351,7 @@ body {
     color: $ink;
 
     &.is-warn {
-        background: rgba(30, 27, 46, 0.03);
+        background: rgba($ink, 0.03);
         color: $muted;
     }
 }
@@ -324,7 +381,7 @@ body {
 .ciq-detect {
     background: none;
     border: none;
-    color: $primary;
+    color: $gold-strong;
     font-weight: 600;
     font-size: 0.82rem;
     cursor: pointer;
@@ -334,7 +391,7 @@ body {
 }
 
 .ciq-control { display: flex; flex-direction: column; gap: 0.45rem; }
-.ciq-control > label { font-weight: 600; font-size: 0.85rem; }
+.ciq-control > label { font-weight: 600; font-size: 0.85rem; color: $text-2; }
 
 .ciq-control select {
     border: 1px solid $line;
@@ -342,7 +399,8 @@ body {
     padding: 0.6rem 0.75rem;
     font-size: 0.95rem;
     font-family: inherit;
-    background: #fff;
+    background: $surface;
+    color: $ink;
     min-width: 180px;
 }
 
@@ -361,10 +419,10 @@ body {
         font-weight: 600;
         font-size: 0.9rem;
         color: $muted;
-        transition: all 0.15s ease;
+        transition: all $dur $ease;
     }
 
-    &.is-active span { background: rgba(124, 92, 255, 0.12); color: $primary; border-color: $primary; }
+    &.is-active span { background: $gold-tint; color: $gold-strong; border-color: $gold; }
 }
 
 .ciq-regen { margin-left: auto; }
@@ -381,16 +439,16 @@ body {
     border-radius: $radius;
     padding: 1rem;
     text-align: center;
-    box-shadow: $shadow;
+    box-shadow: $shadow-sm;
 }
 
 .ciq-piece-slot {
     display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-size: clamp(0.65rem, 0.6rem + 0.25vw, 0.75rem);
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: $primary;
+    letter-spacing: 0.18em;
+    color: $gold-strong;
     margin-bottom: 0.6rem;
 }
 
