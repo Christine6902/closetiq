@@ -1,0 +1,23 @@
+# Deploy to Render: https://render.com
+# Connect your GitHub repo → Render auto-detects this file
+services:
+  - type: web
+    name: closetiq
+    runtime: python
+    buildCommand: pip install . uvicorn[standard]
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT --workers 2
+    envVars:
+      - key: TINA4_DEBUG
+        value: "false"
+      - key: TINA4_LOG_LEVEL
+        value: INFO
+      - key: TINA4_DATABASE_URL
+        value: "sqlite:///data/app.db"
+      - key: TINA4_NO_BROWSER
+        value: "true"
+      - key: TINA4_SECRET
+        generateValue: true
+    disk:
+      name: closetiq-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
