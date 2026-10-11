@@ -1,7 +1,7 @@
 [project]
-name = "tina4example"
-version = "0.1.0"
-description = "A Tina4 Python project"
+name = "closetiq"
+version = "1.0.0"
+description = "Smart digital wardrobe and outfit planner — built with Tina4 Python"
 requires-python = ">=3.12"
 dependencies = [
     "tina4-python>=3.1.0",
