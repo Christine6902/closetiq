@@ -33,6 +33,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // Password visibility toggle.
+    document.querySelectorAll("[data-toggle-password]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            var input = document.getElementById(btn.getAttribute("data-toggle-password"));
+            if (!input) return;
+            var shown = input.type === "text";
+            input.type = shown ? "password" : "text";
+            btn.textContent = shown ? "Show" : "Hide";
+            btn.setAttribute("aria-label", shown ? "Show password" : "Hide password");
+        });
+    });
+
     // Paint per-item swatch colours (inline style attrs are CSP-blocked, but the
     // CSSOM .style API from this same-origin script is allowed).
     document.querySelectorAll("[data-swatch]").forEach(function (el) {

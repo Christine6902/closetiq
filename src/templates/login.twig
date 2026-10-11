@@ -28,7 +28,10 @@
             </div>
             <div class="ciq-field">
                 <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" name="password" placeholder="Your password" required>
+                <div class="ciq-password-wrap">
+                    <input type="password" id="loginPassword" name="password" placeholder="Your password" required>
+                    <button type="button" class="ciq-password-toggle" data-toggle-password="loginPassword" aria-label="Show password">Show</button>
+                </div>
             </div>
             <button type="submit" class="ciq-btn ciq-btn-primary ciq-btn-full">Sign In</button>
         </form>
@@ -45,7 +48,10 @@
             </div>
             <div class="ciq-field">
                 <label for="regPassword">Password</label>
-                <input type="password" id="regPassword" name="password" placeholder="At least 8 characters" required>
+                <div class="ciq-password-wrap">
+                    <input type="password" id="regPassword" name="password" placeholder="At least 8 characters" required>
+                    <button type="button" class="ciq-password-toggle" data-toggle-password="regPassword" aria-label="Show password">Show</button>
+                </div>
             </div>
             <button type="submit" class="ciq-btn ciq-btn-primary ciq-btn-full">Create Account</button>
         </form>

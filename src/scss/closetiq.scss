@@ -293,6 +293,8 @@ h2, .ciq-section-title { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); }
 .ciq-field label { font-weight: 600; font-size: 0.85rem; color: $text-2; }
 
 .ciq-field input[type="text"],
+.ciq-field input[type="email"],
+.ciq-field input[type="password"],
 .ciq-field select,
 .ciq-field input[type="file"] {
     border: 1px solid $line;
@@ -302,8 +304,32 @@ h2, .ciq-section-title { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); }
     font-family: inherit;
     background: $surface;
     color: $ink;
+    width: 100%;
 
     &:focus { outline: none; border-color: $gold-strong; box-shadow: 0 0 0 3px $gold-tint, 0 0 0 1px $gold-strong; }
+}
+
+.ciq-password-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input { padding-right: 3.5rem; }
+}
+
+.ciq-password-toggle {
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: $gold-strong;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 0.3rem 0.4rem;
+
+    &:hover { color: $ink; }
 }
 
 .ciq-field input[type="color"] {
