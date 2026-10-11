@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS user (
 
 -- Add user ownership to wardrobe items.
 -- Default 1 so the existing seed data belongs to the first registered user.
-ALTER TABLE wardrobe_item ADD COLUMN user_id INTEGER DEFAULT 1 REFERENCES user(id);
+ALTER TABLE wardrobe_item ADD COLUMN user_id INTEGER DEFAULT 1;
