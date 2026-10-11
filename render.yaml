@@ -1,5 +1,5 @@
 # Deploy to Render: https://render.com
-# Connect your GitHub repo → Render auto-detects this file
+# Connect your GitHub repo — Render auto-detects this file
 services:
   - type: web
     name: closetiq
@@ -13,6 +13,8 @@ services:
         value: INFO
       - key: TINA4_DATABASE_URL
         value: "sqlite:///data/app.db"
+      - key: TINA4_SESSION_BACKEND
+        value: file
       - key: TINA4_NO_BROWSER
         value: "true"
       - key: TINA4_SECRET

@@ -13,5 +13,6 @@ class WardrobeItem(ORM):
     season = StringField()        # summer | winter | all
     style_tags = JSONField()      # e.g. ["casual", "corporate"]
     image_url = StringField()     # optional uploaded image path
+    user_id = IntegerField()       # owner — references user(id)
     times_worn = IntegerField()
     created_at = DateTimeField()

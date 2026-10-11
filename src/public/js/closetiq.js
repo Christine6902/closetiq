@@ -20,6 +20,19 @@
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Auth page: tab switching between login and register forms.
+    document.querySelectorAll("[data-tab]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            var tab = btn.getAttribute("data-tab");
+            document.querySelectorAll(".ciq-auth-tab").forEach(function (t) {
+                t.classList.toggle("is-active", t.getAttribute("data-tab") === tab);
+            });
+            document.querySelectorAll(".ciq-auth-form").forEach(function (f) {
+                f.classList.toggle("is-hidden", f.id !== tab + "Form");
+            });
+        });
+    });
+
     // Paint per-item swatch colours (inline style attrs are CSP-blocked, but the
     // CSSOM .style API from this same-origin script is allowed).
     document.querySelectorAll("[data-swatch]").forEach(function (el) {

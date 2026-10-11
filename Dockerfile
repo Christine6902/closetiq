@@ -17,13 +17,17 @@ COPY src/ src/
 COPY migrations/ migrations/
 COPY design/ design/
 
-# Ensure data directory exists for SQLite
-RUN mkdir -p data
+# Persistent directories: database, sessions, user uploads
+# Mount a Docker volume at /app/data to survive container restarts.
+# Uploads also go to a persistent path so photos aren't lost on redeploy.
+RUN mkdir -p data data/sessions src/public/uploads
 
 # Production environment
 ENV TINA4_DEBUG=false
 ENV TINA4_LOG_LEVEL=INFO
 ENV TINA4_DATABASE_URL=sqlite:///data/app.db
+ENV TINA4_SESSION_BACKEND=file
+ENV TINA4_SECRET=change-me-in-production
 ENV TINA4_NO_BROWSER=true
 ENV PORT=8000
 

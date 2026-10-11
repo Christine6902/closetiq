@@ -3,9 +3,15 @@
         <span class="ciq-brand-mark">C</span>
         <span class="ciq-brand-name">{{ APP_NAME }}</span>
     </a>
+    {% if session_user_name %}
     <div class="ciq-nav-links">
         <a href="/" class="ciq-nav-link{{ ' is-active' if nav_active == 'home' else '' }}">Dashboard</a>
         <a href="/wardrobe" class="ciq-nav-link{{ ' is-active' if nav_active == 'wardrobe' else '' }}">Wardrobe</a>
         <a href="/outfit" class="ciq-nav-link{{ ' is-active' if nav_active == 'outfit' else '' }}">Today's Look</a>
     </div>
+    <div class="ciq-user-menu">
+        <span class="ciq-user-name">{{ session_user_name }}</span>
+        <a href="/logout" class="ciq-nav-link">Sign Out</a>
+    </div>
+    {% endif %}
 </nav>

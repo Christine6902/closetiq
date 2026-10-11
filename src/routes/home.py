@@ -3,14 +3,13 @@ from tina4_python.core.router import get
 from tina4_python.swagger import description, tags
 from src.orm.WardrobeItem import WardrobeItem
 from src.app.outfit_engine import CATEGORIES
+from src.app.auth_helpers import require_login, auth_context
 
-# Emoji shown on the swatch when an item has no photo, keyed by category.
 CATEGORY_ICONS = {
     "top": "\U0001f455", "bottom": "\U0001f456", "dress": "\U0001f457",
     "shoes": "\U0001f45f", "jacket": "\U0001f9e5", "accessory": "\U0001f45c",
 }
 
-# Plural display labels for the dashboard stat cards.
 CATEGORY_LABELS = {
     "top": "Tops", "bottom": "Bottoms", "dress": "Dresses",
     "shoes": "Shoes", "jacket": "Jackets", "accessory": "Accessories",
@@ -21,8 +20,12 @@ CATEGORY_LABELS = {
 @tags(["pages"])
 @get("/")
 async def home(request, response):
-    """Render the wardrobe dashboard (HTML)."""
-    items = WardrobeItem.all(limit=500)
+    """Render the wardrobe dashboard (HTML). Requires login."""
+    user_id, redirect = require_login(request, response)
+    if redirect:
+        return redirect
+
+    items = WardrobeItem.where("user_id = ?", params=[user_id], limit=500)
     counts = {c: 0 for c in CATEGORIES}
     for item in items:
         if item.category in counts:
@@ -34,6 +37,7 @@ async def home(request, response):
     ]
     recent = sorted(items, key=lambda i: i.id or 0, reverse=True)[:6]
     return response.render("dashboard.twig", {
+        **auth_context(request),
         "nav_active": "home",
         "title": "Your Wardrobe at a Glance",
         "total": len(items),

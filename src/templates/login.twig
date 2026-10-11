@@ -1,0 +1,58 @@
+{% extends "base.twig" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<div class="ciq-auth-wrap">
+    <div class="ciq-auth-card">
+        <div class="ciq-auth-header">
+            <span class="ciq-brand-mark">C</span>
+            <h1 class="ciq-auth-title">ClosetIQ</h1>
+            <p class="ciq-auth-tagline">Your style. Smarter every day.</p>
+        </div>
+
+        {% if error %}
+        <div class="ciq-auth-error">{{ error }}</div>
+        {% endif %}
+
+        <div class="ciq-auth-tabs">
+            <button class="ciq-auth-tab{{ ' is-active' if tab != 'register' }}" data-tab="login">Sign In</button>
+            <button class="ciq-auth-tab{{ ' is-active' if tab == 'register' }}" data-tab="register">Create Account</button>
+        </div>
+
+        <form id="loginForm" class="ciq-auth-form{{ ' is-hidden' if tab == 'register' }}" method="post" action="/api/login">
+            {{ form_token() }}
+            <div class="ciq-field">
+                <label for="loginEmail">Email</label>
+                <input type="text" id="loginEmail" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="ciq-field">
+                <label for="loginPassword">Password</label>
+                <input type="text" id="loginPassword" name="password" placeholder="Your password" required>
+            </div>
+            <button type="submit" class="ciq-btn ciq-btn-primary ciq-btn-full">Sign In</button>
+        </form>
+
+        <form id="registerForm" class="ciq-auth-form{{ ' is-hidden' if tab != 'register' }}" method="post" action="/api/register">
+            {{ form_token() }}
+            <div class="ciq-field">
+                <label for="regName">Display Name</label>
+                <input type="text" id="regName" name="display_name" placeholder="Your name" required>
+            </div>
+            <div class="ciq-field">
+                <label for="regEmail">Email</label>
+                <input type="text" id="regEmail" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="ciq-field">
+                <label for="regPassword">Password</label>
+                <input type="text" id="regPassword" name="password" placeholder="At least 8 characters" required>
+            </div>
+            <button type="submit" class="ciq-btn ciq-btn-primary ciq-btn-full">Create Account</button>
+        </form>
+
+        <p class="ciq-auth-footer">
+            <a href="https://tina4.com" class="ciq-link">Powered by Tina4</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

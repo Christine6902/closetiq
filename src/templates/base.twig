@@ -16,20 +16,7 @@
 {% block content %}{% endblock %}
 </main>
 <script src="/js/frond.min.js"></script>
-<script>
-function toggleAddForm(){var p=document.getElementById('addPanel');if(p)p.hidden=!p.hidden;}
-document.addEventListener('click',function(e){
-  var el=e.target.closest('[data-action]');if(!el)return;
-  var a=el.dataset.action;
-  if(a==='toggle-add'){toggleAddForm();}
-  if(a==='save-item'){e.preventDefault();if(window.saveForm){saveForm('itemForm','/api/wardrobe','formMessage',function(){location.reload();});}else{document.getElementById('itemForm').submit();}}
-});
-document.addEventListener('submit',function(e){
-  var f=e.target.closest('[data-delete-id]');if(!f)return;e.preventDefault();
-  var id=f.dataset.deleteId;
-  if(window.sendRequest){sendRequest('/api/wardrobe/'+id+'/delete',{},'POST',function(){location.reload();});}
-});
-</script>
+<script src="/js/closetiq.js"></script>
 {% block scripts %}{% endblock %}
 </body>
 </html>
