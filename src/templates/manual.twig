@@ -1,0 +1,224 @@
+{% extends "base.twig" %}
+{% block title %}How To{% endblock %}
+{% block content %}
+<section class="ciq-section ciq-manual">
+  <h1 class="ciq-page-title">How To Use ClosetIQ</h1>
+  <p class="ciq-page-sub">A step-by-step guide to managing your digital wardrobe and generating outfits.</p>
+
+  <nav class="ciq-manual-toc">
+    <h2 class="ciq-manual-toc-title">Contents</h2>
+    <ol class="ciq-manual-toc-list">
+      <li><a href="#creating-account">Creating Your Account</a></li>
+      <li><a href="#signing-in">Signing In</a></li>
+      <li><a href="#dashboard">The Dashboard</a></li>
+      <li><a href="#wardrobe">Managing Your Wardrobe</a>
+        <ol>
+          <li><a href="#add-item">Adding a New Item</a></li>
+          <li><a href="#filter-category">Filtering by Category</a></li>
+          <li><a href="#remove-item">Removing an Item</a></li>
+        </ol>
+      </li>
+      <li><a href="#outfit">Today's Look — Outfit Generator</a>
+        <ol>
+          <li><a href="#weather">Changing the Weather</a></li>
+          <li><a href="#occasion">Filtering by Occasion</a></li>
+          <li><a href="#regenerate">Regenerating Your Outfit</a></li>
+        </ol>
+      </li>
+      <li><a href="#sign-out">Signing Out</a></li>
+    </ol>
+  </nav>
+
+  {# ── 1. Creating Your Account ── #}
+  <article class="ciq-manual-section" id="creating-account">
+    <h2>1. Creating Your Account</h2>
+    <p>To use ClosetIQ, you first need to create an account.</p>
+    <div class="ciq-manual-steps">
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">1</span>
+        <p>Click the <strong>"Create Account"</strong> tab at the top of the login card.</p>
+      </div>
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">2</span>
+        <div>
+          <p>Fill in your details:</p>
+          <ul>
+            <li><strong>Display Name</strong> — the name shown in the navigation bar</li>
+            <li><strong>Email</strong> — your login email address</li>
+            <li><strong>Password</strong> — at least 8 characters</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">3</span>
+        <p>Click <strong>"Create Account"</strong>. You will be signed in automatically and redirected to your dashboard.</p>
+      </div>
+    </div>
+    <figure class="ciq-manual-fig">
+      <img src="/img/manual/02-register-tab.jpg" alt="Create Account form" loading="lazy">
+      <figcaption>The registration form</figcaption>
+    </figure>
+    <div class="ciq-manual-tip">
+      <strong>Tip:</strong> Click the "Show" button next to the password field to see what you are typing.
+    </div>
+  </article>
+
+  {# ── 2. Signing In ── #}
+  <article class="ciq-manual-section" id="signing-in">
+    <h2>2. Signing In</h2>
+    <p>If you already have an account, sign in from the login page.</p>
+    <div class="ciq-manual-steps">
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">1</span>
+        <p>Make sure the <strong>"Sign In"</strong> tab is active (it is the default).</p>
+      </div>
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">2</span>
+        <p>Enter your <strong>email address</strong> and <strong>password</strong>.</p>
+      </div>
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">3</span>
+        <p>Click <strong>"Sign In"</strong>. You will be redirected to your dashboard.</p>
+      </div>
+    </div>
+    <figure class="ciq-manual-fig">
+      <img src="/img/manual/01-login-page.jpg" alt="Sign In page" loading="lazy">
+      <figcaption>The login page</figcaption>
+    </figure>
+    <div class="ciq-manual-tip">
+      <strong>Tip:</strong> If you enter the wrong credentials, an error message will appear. Check your email and password and try again.
+    </div>
+  </article>
+
+  {# ── 3. Dashboard ── #}
+  <article class="ciq-manual-section" id="dashboard">
+    <h2>3. The Dashboard</h2>
+    <p>After signing in, you arrive at the Dashboard — your home screen showing a summary of everything in your digital wardrobe.</p>
+    <figure class="ciq-manual-fig">
+      <img src="/img/manual/03-dashboard.jpg" alt="Dashboard overview" loading="lazy">
+      <figcaption>The dashboard with category cards and quick links</figcaption>
+    </figure>
+    <p>The dashboard shows:</p>
+    <ul>
+      <li><strong>Total item count</strong> — how many pieces are in your wardrobe</li>
+      <li><strong>Category cards</strong> — quick counts for Tops, Bottoms, Dresses, Shoes, Jackets, and Accessories. Click any card to jump to that category in your wardrobe</li>
+      <li><strong>Quick links</strong> — "Manage wardrobe" takes you to your full wardrobe; "Today's look" opens the outfit generator</li>
+    </ul>
+    <p>The navigation bar at the top gives you quick access to: Dashboard, Wardrobe, Today's Look, How To, and Sign Out.</p>
+  </article>
+
+  {# ── 4. Wardrobe ── #}
+  <article class="ciq-manual-section" id="wardrobe">
+    <h2>4. Managing Your Wardrobe</h2>
+    <p>Click <strong>"Wardrobe"</strong> in the navigation bar to see all your items. If your wardrobe is empty, you will see a message inviting you to add your first item.</p>
+    <figure class="ciq-manual-fig">
+      <img src="/img/manual/04-wardrobe-empty.jpg" alt="Empty wardrobe page" loading="lazy">
+      <figcaption>The wardrobe page with category filters and the Add item button</figcaption>
+    </figure>
+
+    <h3 id="add-item">4.1 Adding a New Item</h3>
+    <div class="ciq-manual-steps">
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">1</span>
+        <p>Click the <strong>"+ Add item"</strong> button in the top-right corner.</p>
+      </div>
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">2</span>
+        <div>
+          <p>Fill in the item details:</p>
+          <ul>
+            <li><strong>Item name</strong> — e.g. "Navy Linen Blazer"</li>
+            <li><strong>Category</strong> — Top, Bottom, Dress, Shoes, Jacket, or Accessory</li>
+            <li><strong>Season</strong> — All seasons, Summer, or Winter</li>
+            <li><strong>Colour</strong> — pick using the colour picker</li>
+            <li><strong>Style tags</strong> — comma-separated, e.g. "casual, smart-casual"</li>
+            <li><strong>Photo</strong> — (optional) upload a photo of the item</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">3</span>
+        <p>Click <strong>"Save item"</strong>. The page will reload and your new item will appear.</p>
+      </div>
+    </div>
+    <figure class="ciq-manual-fig">
+      <img src="/img/manual/05-add-item-form.jpg" alt="Add item form" loading="lazy">
+      <figcaption>The add item form with all fields</figcaption>
+    </figure>
+    <figure class="ciq-manual-fig">
+      <img src="/img/manual/06-wardrobe-with-item.jpg" alt="Wardrobe with an item" loading="lazy">
+      <figcaption>Your wardrobe after adding an item</figcaption>
+    </figure>
+
+    <h3 id="filter-category">4.2 Filtering by Category</h3>
+    <p>Use the <strong>filter chips</strong> at the top of the wardrobe page to show only items in a specific category. Click <strong>"All"</strong> to show everything again.</p>
+    <p>Available filters: All, Top, Bottom, Dress, Shoes, Jacket, Accessory.</p>
+    <div class="ciq-manual-tip">
+      <strong>Tip:</strong> You can also reach a filtered view by clicking a category card on the Dashboard.
+    </div>
+
+    <h3 id="remove-item">4.3 Removing an Item</h3>
+    <div class="ciq-manual-steps">
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">1</span>
+        <p>Click the <strong>"Remove"</strong> link at the bottom of the item card you want to delete.</p>
+      </div>
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">2</span>
+        <p>A confirmation dialog will appear asking if you are sure.</p>
+      </div>
+      <div class="ciq-manual-step">
+        <span class="ciq-manual-step-num">3</span>
+        <p>Click <strong>"OK"</strong> to confirm. The item will be permanently removed.</p>
+      </div>
+    </div>
+    <div class="ciq-manual-tip">
+      <strong>Tip:</strong> Removing an item cannot be undone. Make sure you want to delete it before confirming.
+    </div>
+  </article>
+
+  {# ── 5. Outfit Generator ── #}
+  <article class="ciq-manual-section" id="outfit">
+    <h2>5. Today's Look — Outfit Generator</h2>
+    <p>Click <strong>"Today's Look"</strong> in the navigation bar. ClosetIQ will pick a complete outfit from your wardrobe — a top, bottom, shoes, and an accessory.</p>
+    <figure class="ciq-manual-fig">
+      <img src="/img/manual/08-outfit-generated.jpg" alt="Generated outfit" loading="lazy">
+      <figcaption>A complete outfit generated from your wardrobe</figcaption>
+    </figure>
+
+    <h3 id="weather">5.1 Changing the Weather</h3>
+    <p>Use the weather radio buttons to match your outfit to the conditions:</p>
+    <ul>
+      <li><strong>Hot</strong> — lightweight, summer-friendly items</li>
+      <li><strong>Mild</strong> — all-season items (the default)</li>
+      <li><strong>Cold</strong> — adds a JACKET slot and picks winter items</li>
+      <li><strong>Rainy</strong> — weather-appropriate pieces</li>
+    </ul>
+    <figure class="ciq-manual-fig">
+      <img src="/img/manual/09-outfit-cold-weather.jpg" alt="Cold weather outfit with jacket" loading="lazy">
+      <figcaption>Cold weather adds an extra Jacket slot to your outfit</figcaption>
+    </figure>
+    <div class="ciq-manual-tip">
+      <strong>Tip:</strong> Click "Use my location" to let ClosetIQ detect your local weather and choose the best setting automatically.
+    </div>
+
+    <h3 id="occasion">5.2 Filtering by Occasion</h3>
+    <p>Use the <strong>Occasion</strong> dropdown to filter for a specific dress code: Any occasion, Casual, Formal, Smart-casual, Date, or Work.</p>
+    <p>The outfit generator will only use items whose style tags match the selected occasion.</p>
+
+    <h3 id="regenerate">5.3 Regenerating Your Outfit</h3>
+    <p>Click the <strong>"Regenerate"</strong> button to get a fresh outfit with the same weather and occasion settings. Each click picks different items at random, so keep regenerating until you find a look you love.</p>
+  </article>
+
+  {# ── 6. Signing Out ── #}
+  <article class="ciq-manual-section" id="sign-out">
+    <h2>6. Signing Out</h2>
+    <p>Click <strong>"Sign Out"</strong> in the top-right corner of the navigation bar. You will be redirected back to the login page. Your wardrobe data is saved and will be there when you sign in again.</p>
+  </article>
+
+  <footer class="ciq-manual-footer">
+    <p>ClosetIQ — Your Style. Smarter Every Day.</p>
+    <p><a href="https://tina4.com" class="ciq-link">Powered by Tina4</a></p>
+  </footer>
+</section>
+{% endblock %}
