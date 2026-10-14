@@ -12,6 +12,7 @@
     </div>
     <div class="ciq-user-menu">
         <span class="ciq-user-name">{{ session_user_name }}</span>
+        <a href="/change-password" class="ciq-nav-link{{ ' is-active' if nav_active == 'change-password' else '' }}">Change Password</a>
         <a href="/logout" class="ciq-nav-link">Sign Out</a>
     </div>
     {% endif %}

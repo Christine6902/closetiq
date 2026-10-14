@@ -555,6 +555,17 @@ h2, .ciq-section-title { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); }
     text-align: center;
 }
 
+.ciq-auth-success {
+    background: rgba($success, 0.08);
+    color: $success;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
 .ciq-auth-tabs {
     display: flex;
     gap: 0;
