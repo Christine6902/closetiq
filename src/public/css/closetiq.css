@@ -696,6 +696,17 @@ h2, .ciq-section-title {
   text-align: center;
 }
 
+.ciq-auth-success {
+  background: rgba(70, 96, 56, 0.08);
+  color: #466038;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 .ciq-auth-tabs {
   display: flex;
   gap: 0;
