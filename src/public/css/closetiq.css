@@ -707,6 +707,12 @@ h2, .ciq-section-title {
   text-align: center;
 }
 
+.ciq-auth-forgot {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
 .ciq-auth-tabs {
   display: flex;
   gap: 0;
